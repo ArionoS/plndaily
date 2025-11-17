@@ -115,8 +115,8 @@ const EvaluasiAktifTable = () => {
                             setCurrentPage(1);
                         }}
                         className={`pb-3 px-1 font-medium transition-colors relative ${activeTab === 'aktif'
-                                ? 'text-teal-600'
-                                : 'text-gray-500 hover:text-gray-700'
+                            ? 'text-teal-600'
+                            : 'text-gray-500 hover:text-gray-700'
                             }`}
                     >
                         Evaluasi Aktif
@@ -130,8 +130,8 @@ const EvaluasiAktifTable = () => {
                             setCurrentPage(1);
                         }}
                         className={`pb-3 px-1 font-medium transition-colors relative ${activeTab === 'ditolak'
-                                ? 'text-teal-600'
-                                : 'text-gray-500 hover:text-gray-700'
+                            ? 'text-teal-600'
+                            : 'text-gray-500 hover:text-gray-700'
                             }`}
                     >
                         Evaluasi Ditolak
@@ -235,10 +235,10 @@ const EvaluasiAktifTable = () => {
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <span
                                                 className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${row.status === 'Proses Approval'
-                                                        ? 'bg-orange-100 text-orange-700'
-                                                        : row.status === 'Ditolak'
-                                                            ? 'bg-red-100 text-red-700'
-                                                            : 'bg-teal-100 text-teal-700'
+                                                    ? 'bg-orange-100 text-orange-700'
+                                                    : row.status === 'Ditolak'
+                                                        ? 'bg-red-100 text-red-700'
+                                                        : 'bg-teal-100 text-teal-700'
                                                     }`}
                                             >
                                                 {row.status}
@@ -252,63 +252,95 @@ const EvaluasiAktifTable = () => {
 
                     {/* Pagination */}
                     <div className="px-6 py-4 flex items-center justify-between border-t border-gray-200 bg-white">
-                        <div className="flex items-center gap-2 text-sm text-gray-700">
+
+                        {/* LEFT — Showing X of Y */}
+                        <div className="flex items-center gap-3 text-sm text-gray-700">
                             <span>Menampilkan</span>
-                            <select
-                                value={itemsPerPage}
-                                onChange={(e) => {
-                                    setItemsPerPage(Number(e.target.value));
-                                    setCurrentPage(1);
-                                }}
-                                className="px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white text-sm"
-                            >
-                                <option value={5}>5</option>
-                                <option value={10}>10</option>
-                                <option value={25}>25</option>
-                                <option value={50}>50</option>
-                            </select>
+
+                            <div className="relative">
+                                <select
+                                    value={itemsPerPage}
+                                    onChange={(e) => {
+                                        setItemsPerPage(Number(e.target.value));
+                                        setCurrentPage(1);
+                                    }}
+                                    className="
+                    h-9 
+                    pl-3 pr-8 
+                    border border-gray-300 
+                    rounded-lg 
+                    bg-white 
+                    text-sm
+                    focus:ring-2 focus:ring-teal-500
+                "
+                                >
+                                    <option value={5}>5</option>
+                                    <option value={10}>10</option>
+                                    <option value={25}>25</option>
+                                    <option value={50}>50</option>
+                                </select>
+
+                                {/* dropdown icon */}
+                                <span className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+
+                                </span>
+                            </div>
+
                             <span>dari {filteredData.length} Data</span>
                         </div>
 
+                        {/* RIGHT — Pagination */}
                         <div className="flex items-center gap-1">
+
+                            {/* Prev */}
                             <button
                                 onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                                 disabled={currentPage === 1}
-                                className="p-1.5 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors hover:bg-gray-100"
-                                aria-label="Previous page"
+                                className="
+                w-9 h-9 flex items-center justify-center 
+                rounded-md transition
+                disabled:opacity-40 
+                hover:bg-gray-100
+            "
                             >
-                                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
 
+                            {/* Page Numbers */}
                             {[...Array(totalPages)].map((_, i) => (
                                 <button
                                     key={i + 1}
                                     onClick={() => setCurrentPage(i + 1)}
-                                    className={`min-w-[36px] h-[36px] flex items-center justify-center rounded text-sm font-medium transition-colors ${currentPage === i + 1
-                                            ? 'bg-teal-600 text-white'
-                                            : 'text-gray-700 hover:bg-gray-100'
-                                        }`}
+                                    className={`
+                    w-9 h-9 flex items-center justify-center rounded-md text-sm
+                    ${currentPage === i + 1
+                                            ? "bg-teal-600 text-white"
+                                            : "text-gray-700 hover:bg-gray-100"
+                                        }
+                `}
                                 >
                                     {i + 1}
                                 </button>
                             ))}
 
-                            {totalPages > 5 && currentPage < totalPages - 2 && (
-                                <span className="px-2 text-gray-400 text-sm">...</span>
-                            )}
-
+                            {/* Next */}
                             <button
                                 onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                                 disabled={currentPage === totalPages}
-                                className="p-1.5 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors hover:bg-gray-100"
-                                aria-label="Next page"
+                                className="
+                w-9 h-9 flex items-center justify-center 
+                rounded-md transition
+                disabled:opacity-40 
+                hover:bg-gray-100
+            "
                             >
-                                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
                             </button>
+
                         </div>
                     </div>
                 </div>
