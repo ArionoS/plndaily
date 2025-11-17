@@ -80,9 +80,9 @@ function App() {
       <BackTop />
 
       {/* Footer with dynamic margin */}
-      <div className={`transition-all duration-300 ${isSidebarCollapsed ? 'lg:ml-0' : 'lg:ml-64'}`}>
+      {/* <div className={`transition-all duration-300 ${isSidebarCollapsed ? 'lg:ml-0' : 'lg:ml-64'}`}>
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 }
