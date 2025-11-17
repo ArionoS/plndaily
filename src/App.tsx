@@ -21,7 +21,8 @@ import Maintenance from './pages/errors/Maintenance';
 import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
 import ForgotPassword from './pages/auth/ForgotPassword';
-import EvaluasiAktifTable from "./pages/evaluation";
+import ActiveEvaluation from "./pages/evaluation/active-evaluation";
+import ApprovalEvaluation from "./pages/evaluation/approval-evaluation";
 
 
 declare global {
@@ -72,7 +73,8 @@ function App() {
               <Route path='/gallery' element={<Gallery />} />
               <Route path="*" element={<Page404 />} />
 
-              <Route path="/active-evaluation" element={<EvaluasiAktifTable />} />
+              <Route path="/active-evaluation" element={<ActiveEvaluation />} />
+              <Route path="/approval-evaluation" element={<ApprovalEvaluation />} />
             </Routes>
           </div>
         </div>

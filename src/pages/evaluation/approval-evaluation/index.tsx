@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const EvaluasiAktifTable = () => {
+const ApprovalEvaluation = () => {
     const [activeTab, setActiveTab] = useState('aktif');
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -12,25 +12,25 @@ const EvaluasiAktifTable = () => {
             periode: 'Oktober 2025',
             unitInduk: 'Unit Induk ABC',
             tanggalDibuat: '20 Aug 2025',
-            totalPagu: 'Rp 250.000.000',
+            totalPagu: '5 Pekerjaan',
             tahapan: 'GM',
-            status: 'Proses Approval'
+            status: 'Butuh Approval'
         },
         {
             id: 2,
             periode: 'September 2025',
             unitInduk: 'Unit Induk ABC',
             tanggalDibuat: '20 Aug 2025',
-            totalPagu: 'Rp 250.000.000',
+            totalPagu: '10 Pekerjaan',
             tahapan: 'Asman & Staff Yan HC',
-            status: 'Proses Approval'
+            status: 'Butuh Approval'
         },
         {
             id: 3,
             periode: 'Agustus 2025',
             unitInduk: 'Unit Induk ABC',
             tanggalDibuat: '20 Aug 2025',
-            totalPagu: 'Rp 250.000.000',
+            totalPagu: '11 Pekerjaan',
             tahapan: 'MD Evaluator Yan HC',
             status: 'Proses Approval'
         },
@@ -39,7 +39,7 @@ const EvaluasiAktifTable = () => {
             periode: 'Juli 2025',
             unitInduk: 'Unit Induk ABC',
             tanggalDibuat: '20 Aug 2025',
-            totalPagu: 'Rp 250.000.000',
+            totalPagu: '7 Pekerjaan',
             tahapan: '-',
             status: 'Disetujui'
         },
@@ -48,7 +48,7 @@ const EvaluasiAktifTable = () => {
             periode: 'Juni 2025',
             unitInduk: 'Unit Induk ABC',
             tanggalDibuat: '20 Aug 2025',
-            totalPagu: 'Rp 250.000.000',
+            totalPagu: '15 Pekerjaan',
             tahapan: '-',
             status: 'Disetujui'
         },
@@ -57,7 +57,7 @@ const EvaluasiAktifTable = () => {
             periode: 'Mei 2025',
             unitInduk: 'Unit Induk XYZ',
             tanggalDibuat: '15 Aug 2025',
-            totalPagu: 'Rp 180.000.000',
+            totalPagu: '1 Pekerjaan',
             tahapan: 'GM',
             status: 'Ditolak'
         },
@@ -66,7 +66,7 @@ const EvaluasiAktifTable = () => {
             periode: 'April 2025',
             unitInduk: 'Unit Induk XYZ',
             tanggalDibuat: '10 Aug 2025',
-            totalPagu: 'Rp 200.000.000',
+            totalPagu: '50 Pekerjaan',
             tahapan: 'MD Evaluator Yan HC',
             status: 'Ditolak'
         },
@@ -75,7 +75,7 @@ const EvaluasiAktifTable = () => {
             periode: 'Maret 2025',
             unitInduk: 'Unit Induk DEF',
             tanggalDibuat: '05 Aug 2025',
-            totalPagu: 'Rp 150.000.000',
+            totalPagu: '25 Pekerjaan',
             tahapan: 'Asman & Staff Yan HC',
             status: 'Ditolak'
         }
@@ -96,20 +96,20 @@ const EvaluasiAktifTable = () => {
             <div className="max-w-7xl mx-auto">
                 {/* Breadcrumb */}
                 <div className="mb-4">
-                    <span className="text-gray-500 text-sm">Evaluasi Lembur</span>
+                    <span className="text-gray-500 text-sm">Approval Lembur</span>
                 </div>
 
                 {/* Page Title with Border */}
                 <div className="mb-8">
                     <div className="flex items-center gap-3">
                         <div className="w-1 h-8 bg-teal-600 rounded-full"></div>
-                        <h1 className="text-2xl font-bold text-gray-800">Evaluasi Lembur</h1>
+                        <h1 className="text-2xl font-bold text-gray-800">Approval Lembur</h1>
                     </div>
                 </div>
 
                 {/* Tabs */}
                 <div className="flex gap-8 mb-8 border-b border-gray-200">
-                    <button
+                    {/* <button
                         onClick={() => {
                             setActiveTab('aktif');
                             setCurrentPage(1);
@@ -119,7 +119,7 @@ const EvaluasiAktifTable = () => {
                             : 'text-gray-500 hover:text-gray-700'
                             }`}
                     >
-                        Evaluasi Aktif
+                        Approval Aktif
                         {activeTab === 'aktif' && (
                             <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-600"></div>
                         )}
@@ -134,17 +134,17 @@ const EvaluasiAktifTable = () => {
                             : 'text-gray-500 hover:text-gray-700'
                             }`}
                     >
-                        Evaluasi Ditolak
+                        Approval Ditolak
                         {activeTab === 'ditolak' && (
                             <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-600"></div>
                         )}
-                    </button>
+                    </button> */}
                 </div>
 
                 {/* Table Header */}
                 <div className="flex items-center justify-between mb-6">
                     <h2 className="text-xl font-semibold text-gray-800">
-                        {activeTab === 'aktif' ? 'Table Evaluasi Aktif' : 'Table Evaluasi Ditolak'}
+                        {activeTab === 'aktif' ? 'Table Approval Aktif' : 'Table Approval Ditolak'}
                     </h2>
 
                     <div className="flex items-center gap-3">
@@ -195,23 +195,15 @@ const EvaluasiAktifTable = () => {
                                         Periode
                                     </th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-teal-700 uppercase tracking-wider">
-                                        Unit Induk
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-teal-700 uppercase tracking-wider">
-                                        Tanggal Dibuat
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-teal-700 uppercase tracking-wider">
-                                        Total Pagu Terpakai
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-teal-700 uppercase tracking-wider">
-                                        Tahapan Persetujuan
+                                        Total Pekerjaan
                                     </th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-teal-700 uppercase tracking-wider">
                                         Status
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-teal-700 uppercase tracking-wider">
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-teal-700 uppercase tracking-wider w-[120px]">
                                         Aksi
                                     </th>
+
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
@@ -223,32 +215,26 @@ const EvaluasiAktifTable = () => {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {row.periode}
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {row.unitInduk}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {row.tanggalDibuat}
-                                        </td>
+
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {row.totalPagu}
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {row.tahapan}
-                                        </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <span
-                                                className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${row.status === 'Proses Approval'
-                                                    ? 'bg-orange-100 text-orange-700'
-                                                    : row.status === 'Ditolak'
-                                                        ? 'bg-red-100 text-red-700'
-                                                        : 'bg-teal-100 text-teal-700'
+                                                className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${row.status === "Proses Approval"
+                                                    ? "bg-orange-100 text-orange-700"
+                                                    : row.status === "Ditolak"
+                                                        ? "bg-red-100 text-red-700"
+                                                        : row.status === "Butuh Approval"
+                                                            ? "bg-blue-100 text-blue-700"
+                                                            : "bg-teal-100 text-teal-700"
                                                     }`}
                                             >
                                                 {row.status}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-center">
-                                            <div className="flex items-center justify-center gap-2">
+                                        <td className="px-6 py-4 whitespace-nowrap text-center w-[120px]">
+                                            <div className="flex items-center justify-center gap-3">
                                                 {/* View Button */}
                                                 <button
                                                     onClick={() => alert(`Lihat detail: ${row.periode}`)}
@@ -275,7 +261,7 @@ const EvaluasiAktifTable = () => {
                                                 {/* Delete Button */}
                                                 <button
                                                     onClick={() => {
-                                                        if (confirm(`Hapus evaluasi periode ${row.periode}?`)) {
+                                                        if (confirm(`Hapus Approval periode ${row.periode}?`)) {
                                                             alert(`Dihapus: ${row.periode}`);
                                                         }
                                                     }}
@@ -393,4 +379,4 @@ const EvaluasiAktifTable = () => {
     );
 };
 
-export default EvaluasiAktifTable;
+export default ApprovalEvaluation;
