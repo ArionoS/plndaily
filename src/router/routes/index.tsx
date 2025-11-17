@@ -63,7 +63,7 @@ export const baseRoutes: AppRoute[] = [
     meta: { title: "About" },
   },
   {
-    path: "login",
+    path: "sign-in",
     id: "login",
     Component: Login,
     meta: { title: "Login", hideInSidebar: false },

@@ -163,7 +163,7 @@ export default function Sidebar({ onToggle }: SidebarProps) {
               <ul className="space-y-1.5">
                 {renderMenu(baseRoutes)}
                 {/* Home */}
-                <li>
+                {/* <li>
                   <Link
                     to="/"
                     className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 font-medium ${isActive('/')}`}
@@ -173,10 +173,10 @@ export default function Sidebar({ onToggle }: SidebarProps) {
                     </svg>
                     Home
                   </Link>
-                </li>
+                </li> */}
 
                 {/* Blog Dropdown */}
-                <li className="hs-accordion" id="blog-accordion">
+                {/* <li className="hs-accordion" id="blog-accordion">
                   <button
                     type="button"
                     className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
@@ -213,10 +213,10 @@ export default function Sidebar({ onToggle }: SidebarProps) {
                       </li>
                     </ul>
                   </div>
-                </li>
+                </li> */}
 
                 {/* Gallery */}
-                <li>
+                {/* <li>
                   <Link
                     to="/gallery"
                     className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 ${isActive('/gallery')}`}
@@ -226,10 +226,10 @@ export default function Sidebar({ onToggle }: SidebarProps) {
                     </svg>
                     Gallery
                   </Link>
-                </li>
+                </li> */}
 
                 {/* Pages Dropdown */}
-                <li className="hs-accordion" id="pages-accordion">
+                {/* <li className="hs-accordion" id="pages-accordion">
                   <button
                     type="button"
                     className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
@@ -266,10 +266,10 @@ export default function Sidebar({ onToggle }: SidebarProps) {
                       </li>
                     </ul>
                   </div>
-                </li>
+                </li> */}
 
                 {/* Auth Dropdown */}
-                <li className="hs-accordion" id="auth-accordion">
+                {/* <li className="hs-accordion" id="auth-accordion">
                   <button
                     type="button"
                     className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
@@ -314,10 +314,10 @@ export default function Sidebar({ onToggle }: SidebarProps) {
                       </li>
                     </ul>
                   </div>
-                </li>
+                </li> */}
 
                 {/* Errors Dropdown */}
-                <li className="hs-accordion" id="errors-accordion">
+                {/* <li className="hs-accordion" id="errors-accordion">
                   <button
                     type="button"
                     className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
@@ -362,7 +362,7 @@ export default function Sidebar({ onToggle }: SidebarProps) {
                       </li>
                     </ul>
                   </div>
-                </li>
+                </li> */}
               </ul>
             </div>
           </nav>
