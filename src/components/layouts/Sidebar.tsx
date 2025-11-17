@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { baseRoutes,AppRoute } from '#src/router/routes';
+import { baseRoutes, AppRoute } from '#src/router/routes';
 interface SidebarProps {
   onToggle?: (collapsed: boolean) => void;
 }
@@ -30,77 +30,77 @@ export default function Sidebar({ onToggle }: SidebarProps) {
       onToggle(newState);
     }
   };
- const renderMenu = (routes: AppRoute[], parentId = '') => {
-  return routes
-    .filter((r) => !r.meta?.hideInSidebar)
-    .map((route, index) => {
-      const accordionId = `${parentId}-${route.id || route.path || index}`;
+  const renderMenu = (routes: AppRoute[], parentId = '') => {
+    return routes
+      .filter((r) => !r.meta?.hideInSidebar)
+      .map((route, index) => {
+        const accordionId = `${parentId}-${route.id || route.path || index}`;
 
-      if (route.children?.length) {
+        if (route.children?.length) {
+          return (
+            <li className="hs-accordion" id={accordionId} key={accordionId}>
+              <button
+                type="button"
+                className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
+              >
+                {route.meta?.icon}
+                {route.meta?.title}
+                <svg
+                  className="hs-accordion-active:block ms-auto hidden w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m18 15-6-6-6 6" />
+                </svg>
+                <svg
+                  className="hs-accordion-active:hidden ms-auto block w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+
+              <div className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
+                <ul className="pt-2 ps-7 space-y-1 border-l-2 border-gray-200 ml-3">
+                  {renderMenu(route.children, accordionId)}
+                </ul>
+              </div>
+            </li>
+          );
+        }
+
         return (
-          <li className="hs-accordion" id={accordionId} key={accordionId}>
-            <button
-              type="button"
-              className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
+          <li key={accordionId}>
+            <Link
+              to={`/${route.path}`}
+              className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 ${isActive(
+                route.path || ''
+              )}`}
             >
               {route.meta?.icon}
               {route.meta?.title}
-              <svg
-                className="hs-accordion-active:block ms-auto hidden w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m18 15-6-6-6 6" />
-              </svg>
-              <svg
-                className="hs-accordion-active:hidden ms-auto block w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
-
-            <div className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
-              <ul className="pt-2 ps-7 space-y-1">{renderMenu(route.children, accordionId)}</ul>
-            </div>
+            </Link>
           </li>
         );
-      }
+      });
+  };
 
-      return (
-        <li key={accordionId}>
-          <Link
-            to={`/${route.path}`}
-            className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 ${isActive(
-              route.path || ''
-            )}`}
-          >
-            {route.meta?.icon}
-            {route.meta?.title}
-          </Link>
-        </li>
-      );
-    });
-};
 
-  
   return (
     <>
       {/* Desktop Toggle Button - Fixed on the right edge of sidebar */}
       <button
         onClick={toggleSidebar}
-        className={`hidden lg:flex fixed top-20 z-[70] items-center justify-center w-8 h-8 bg-white border border-gray-200 rounded-full shadow-sm hover:bg-gray-100 transition-all duration-300 ${
-          isCollapsed ? 'left-4' : 'left-60'
-        }`}
+        className={`hidden lg:flex fixed top-20 z-[70] items-center justify-center w-8 h-8 bg-white border border-gray-200 rounded-full shadow-sm hover:bg-gray-100 transition-all duration-300 ${isCollapsed ? 'left-4' : 'left-60'
+          }`}
         aria-label="Toggle Sidebar"
       >
         <svg
-          className={`w-4 h-4 text-gray-600 transition-transform duration-300 ${
-            isCollapsed ? 'rotate-0' : 'rotate-180'
-          }`}
+          className={`w-4 h-4 text-gray-600 transition-transform duration-300 ${isCollapsed ? 'rotate-0' : 'rotate-180'
+            }`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -130,9 +130,8 @@ export default function Sidebar({ onToggle }: SidebarProps) {
       {/* Sidebar */}
       <div
         id="app-sidebar"
-        className={`hs-overlay [--auto-close:lg] lg:block lg:end-auto lg:bottom-0 w-64 hs-overlay-open:translate-x-0 transition-all duration-300 transform h-full hidden fixed top-0 start-0 bottom-0 z-[60] bg-white border-e border-gray-200 ${
-          isCollapsed ? 'lg:-translate-x-full' : 'lg:translate-x-0'
-        } -translate-x-full`}
+        className={`hs-overlay [--auto-close:lg] lg:block lg:end-auto lg:bottom-0 w-64 hs-overlay-open:translate-x-0 transition-all duration-300 transform h-full hidden fixed top-0 start-0 bottom-0 z-[60] bg-white border-e border-gray-200 ${isCollapsed ? 'lg:-translate-x-full' : 'lg:translate-x-0'
+          } -translate-x-full`}
         role="dialog"
         tabIndex={-1}
         aria-label="Sidebar"
