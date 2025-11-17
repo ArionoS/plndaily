@@ -42,7 +42,10 @@ function App() {
     <div className="relative">
       {/* Navbar with dynamic margin */}
       <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isSidebarCollapsed ? 'lg:ml-0' : 'lg:ml-64'}`}>
-        <Navbar />
+        <Navbar
+          sidebarCollapsed={isSidebarCollapsed}
+          onToggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+        />
       </div>
 
       <Sidebar onToggle={setIsSidebarCollapsed} />
