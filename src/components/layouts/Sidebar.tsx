@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
+import { baseRoutes,AppRoute } from '#src/router/routes';
 interface SidebarProps {
   onToggle?: (collapsed: boolean) => void;
 }
@@ -30,7 +30,63 @@ export default function Sidebar({ onToggle }: SidebarProps) {
       onToggle(newState);
     }
   };
+ const renderMenu = (routes: AppRoute[], parentId = '') => {
+  return routes
+    .filter((r) => !r.meta?.hideInSidebar)
+    .map((route, index) => {
+      const accordionId = `${parentId}-${route.id || route.path || index}`;
 
+      if (route.children?.length) {
+        return (
+          <li className="hs-accordion" id={accordionId} key={accordionId}>
+            <button
+              type="button"
+              className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              {route.meta?.icon}
+              {route.meta?.title}
+              <svg
+                className="hs-accordion-active:block ms-auto hidden w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m18 15-6-6-6 6" />
+              </svg>
+              <svg
+                className="hs-accordion-active:hidden ms-auto block w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+
+            <div className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
+              <ul className="pt-2 ps-7 space-y-1">{renderMenu(route.children, accordionId)}</ul>
+            </div>
+          </li>
+        );
+      }
+
+      return (
+        <li key={accordionId}>
+          <Link
+            to={`/${route.path}`}
+            className={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 ${isActive(
+              route.path || ''
+            )}`}
+          >
+            {route.meta?.icon}
+            {route.meta?.title}
+          </Link>
+        </li>
+      );
+    });
+};
+
+  
   return (
     <>
       {/* Desktop Toggle Button - Fixed on the right edge of sidebar */}
@@ -106,6 +162,7 @@ export default function Sidebar({ onToggle }: SidebarProps) {
           <nav className="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
             <div className="hs-accordion-group p-3 w-full flex flex-col" data-hs-accordion-always-open>
               <ul className="space-y-1.5">
+                {renderMenu(baseRoutes)}
                 {/* Home */}
                 <li>
                   <Link
