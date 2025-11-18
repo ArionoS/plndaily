@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { baseRoutes, AppRoute } from '#src/router/routes';
+import Logo32 from "../../assets/logo/logo-32x32.png";
+
 interface SidebarProps {
   onToggle?: (collapsed: boolean) => void;
 }
@@ -139,10 +141,17 @@ export default function Sidebar({ onToggle }: SidebarProps) {
         <div className="relative flex h-full max-h-full flex-col">
           {/* Sidebar Header */}
           <header className="p-4 flex justify-between items-center gap-x-2 border-b border-gray-200">
-            <Link to="/" className="flex-none font-semibold text-xl text-black focus:outline-none">
-              PLNDAILY
+            <Link
+              to="/"
+              className="flex items-center gap-2 font-semibold text-xl text-black focus:outline-none"
+            >
+              <img
+                src={Logo32}
+                alt="PLN Logo"
+                className="w-8 h-8"
+              />
+              <span>PLN DAILY</span>
             </Link>
-
             <div className="lg:hidden">
               <button
                 type="button"
